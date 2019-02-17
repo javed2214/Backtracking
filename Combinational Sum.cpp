@@ -4,45 +4,37 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-#define MOD 1000000007
-#define DB(x) cout<<#x<<"="<<x<<endl;
-#define FASTREAD ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-#define ll long long int
-#define SIZE 1000000
 
-void combinationaSum(std::vector<int> &v, int sum, std::vector<int> &r, std::vector<vector<int> > &res, int i){
+void Combination(vector<int> &v, int sum, vector<int> &ans, vector<vector<int>> &res, int ind){
 
-	if(sum<0) return;
 	if(sum==0){
-		res.push_back(r);
+		res.push_back(ans);
 		return;
 	}
-	while(i<v.size() and sum-v[i]>=0){
-
-		r.push_back(v[i]);
-		combinationaSum(v,sum-v[i],r,res,i);
-		i++;
-		r.pop_back();
+	for(int i=ind;i<v.size();i++){
+		if(sum<v[i])
+			break;
+		ans.push_back(v[i]);
+		Combination(v,sum-v[i],ans,res,i);
+		ans.pop_back();
 	}
-}
+} 
 
 int main(){
 
-	std::vector<int> v={2,3,6,7};
-	std::vector<int> r;
-	vector <vector<int> > res;
+	vector<int> v={2,3,4,5,6};
+	int sum=8;
+
 	sort(v.begin(),v.end());
-	v.erase(unique(v.begin(),v.end()),v.end());  // To Remove Duplicates
-	int sum=7;
+	vector<int> ans;
+	vector<vector<int>> res;
 
-	combinationaSum(v,sum,r,res,0);
+	Combination(v,sum,ans,res,0);
 
-	for(int i=0;i<res.size();i++){
-		for(int j=0;j<res[i].size();j++){
-			cout<<res[i][j]<<" ";
-		}
+	for(auto it:res){
+		for(auto ptr:it)
+			cout<<ptr<<" ";
 		cout<<"\n";
 	}
-
 	return 0;
 }
