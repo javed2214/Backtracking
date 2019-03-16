@@ -79,8 +79,8 @@ bool solveSudoku(int grid[N][N]){
 
 int main(){
 
-	int grid[N][N]={
-		{3, 0, 6, 5, 0, 8, 4, 0, 0}, 
+    int grid[N][N]={
+        {3, 0, 6, 5, 0, 8, 4, 0, 0}, 
         {5, 2, 0, 0, 0, 0, 0, 0, 0}, 
         {0, 8, 7, 0, 0, 0, 0, 3, 1}, 
         {0, 0, 3, 0, 1, 0, 0, 8, 0}, 
@@ -90,6 +90,7 @@ int main(){
         {0, 0, 0, 0, 0, 0, 0, 7, 4}, 
         {0, 0, 5, 2, 0, 6, 3, 0, 0}
     };
+	
     if(solveSudoku(grid)==true)
     	printGrid(grid);
     else cout<<"Solution doesn't Exist!\n";
