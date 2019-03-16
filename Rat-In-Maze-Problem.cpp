@@ -24,7 +24,7 @@ bool isSafe(int maze[N][N], int x, int y){
 
 bool solveMaze(int maze[N][N], int x, int y, int sol[N][N]){
 
-	if(x==N-1 and y==N-1){
+	if(x==N-1 and y==N-1 and isSafe(maze,x,y)==true){
 		sol[x][y]=1;
 		return true;
 	}
@@ -50,7 +50,7 @@ void solveMazeUtil(int maze[N][N]){
 		{0,0,0,0}
 	};
 	if(solveMaze(maze,0,0,sol)==false){
-		cout<<"Soluation doesn't Exist!";
+		cout<<"Solution doesn't Exist!\n";
 		return;
 	}
 	printSolution(sol);
