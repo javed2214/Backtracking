@@ -46,7 +46,7 @@ void getPaths(node *root, vector<int> &v, int target, int sum){
 
 int main(){
 
-	int a[]={20,10,5,15,25,24,45};
+	int a[]={20,10,5,15,40,25,45};
 	int n=sizeof(a)/sizeof(int);
 	int target=45;
 	
