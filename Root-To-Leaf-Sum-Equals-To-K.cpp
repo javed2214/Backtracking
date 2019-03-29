@@ -25,6 +25,25 @@ node *createTree(node *root, int n){
 	return root;
 }
 
+// *********** EFFICIENT APPROACH **************
+/*
+cnt is set to ZERO
+void getPath(TreeNode *root, int cnt, int sum, vector<int> &v, vector<vector<int>> &res){
+    
+    if(root==NULL) return;
+    cnt+=root->val;
+    v.push_back(root->val);
+    if(!root->left and !root->right){
+        if(cnt==sum) res.push_back(v);
+    } 
+    getPath(root->left,cnt,sum,v,res);
+    getPath(root->right,cnt,sum,v,res);
+    cnt-=root->val;
+    v.pop_back();
+}
+
+*/
+
 void printPaths(vector<int>v){
 	for(auto it:v) cout<<it<<" ";
 		cout<<"\n";
