@@ -22,7 +22,7 @@ bool isSafe(vector<vector<string>> &board, int row, int col, int n){
 
 bool solveNQueens(vector<vector<string>> &board, int col, int n){
 
-	if(col>=n) return true;
+	if(col==n-1) return true;
 
 	for(int i=0;i<n;i++){
 		if(isSafe(board,i,col,n)){
