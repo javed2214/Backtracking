@@ -41,7 +41,7 @@ bool isSafe(int board[N][N], int row, int col){
 
 bool solveNQueen(int board[N][N], int col){
 
-	if(col>=N) return true;		// Base Case
+	if(col==N-1) return true;		// Base Case
 	for(int i=0;i<N;i++){
 		if(isSafe(board,i,col)){
 			board[i][col]=1;
