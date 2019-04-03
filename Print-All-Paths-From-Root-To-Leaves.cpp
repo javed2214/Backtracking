@@ -37,16 +37,18 @@ void printVector(std::vector<int> &v){
 	return;
 }
 
-void printRootToLeaves(node *root, std::vector<int> v){
-	if(root==NULL)
-		return;
+void printRootToLeaves(node *root, std::vector<int> &v){
+	
+	if(root==NULL) return;
+	
 	v.push_back(root->data);
+	
 	if(root->left==NULL and root->right==NULL)
 		printVector(v);
-	else{
-		printRootToLeaves(root->left,v);
-		printRootToLeaves(root->right,v);
-	}
+	
+	printRootToLeaves(root->left,v);
+	printRootToLeaves(root->right,v);
+	v.pop_back();
 }
 
 int main(){
