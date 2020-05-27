@@ -1,36 +1,44 @@
-// Program to Find all Distinct Subsets
+// Program to Find All Distinct Subsets of an Array
+// https://leetcode.com/problems/subsets-ii/
+/*
+Input: [1,2,2]
+Output:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+*/
 
-#include<bits/stdc++.h>
-using namespace std;
-
-void findSubsets(vector<int> &v, vector<int> &ans, vector<vector<int>> &res, int ind){
-
-	for(int i=ind;i<v.size();i++){
-		ans.push_back(v[i]);
-		res.push_back(ans);
-		findSubsets(v,ans,res,i+1);
-		ans.pop_back();
-		while(i<v.size() and v[i]==v[i+1]) i++;
-	}
-}
-
-int main(){
-
-	vector<int> v={1,2,2};
-
-	vector<int> ans;
-	vector<vector<int>> res;
-	res.push_back(ans);
-	cout<<"[";
-
-	findSubsets(v,ans,res,0);
-
-	for(auto it:res){
-		cout<<"[";
-		for(auto pt:it)
-			cout<<pt<<" ";
-		cout<<"\b]\n";
-	}
-
-	return 0;
-}
+class Solution {
+public:
+    
+    vector <vector<int>> res;
+    
+    void go(vector <int> &nums, vector <int> &v, int index){
+        
+        for(int i = index; i < nums.size(); i++){
+		
+            if(i > index and nums[i] == nums[i-1]) continue;
+            
+	    v.push_back(nums[i]);
+            res.push_back(v);
+            go(nums, v, i + 1);
+            v.pop_back();
+        }
+    }
+    
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        
+        sort(nums.begin(), nums.end());
+        
+        vector <int> v;
+        res.push_back(v);
+        go(nums, v, 0);
+        
+        return res;
+    }
+};
