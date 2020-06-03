@@ -2,40 +2,46 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-#define N 3
 
-void printPaths(vector<int> v){
+vector <int> v;
 
-	for(auto it:v) cout<<it<<" ";
-	cout<<"\n";
+void printVector(vector <int> &v){
+    for(auto it: v)
+        cout << it << " ";
+    cout << endl;
 }
 
-void getAllPaths(int mat[N][N], int x, int y, vector<int> v){
+void go(vector <vector<int>> &nums, int x, int y, int r, int c, vector<vector<int>> &vis){
 
-	if(x==N-1){
-		for(int i=y;i<N;i++)
-			v.push_back(mat[x][i]);
-		printPaths(v);
-		return;
-	}
-	if(y==N-1){
-		for(int i=x;i<N;i++)
-			v.push_back(mat[i][y]);
-		printPaths(v);
-		return;
-	}
-	v.push_back(mat[x][y]);
-	getAllPaths(mat,x+1,y,v);
-	getAllPaths(mat,x,y+1,v);
+    if(x < 0 or x > r or y < 0 or y > c or vis[x][y]) return;
+    
+    vis[x][y] = 1;
+    v.push_back(nums[x][y]);
+
+    if(x == r and  y == c) printVector(v);
+    
+    go(nums, x, y + 1, r, c, vis);  // Visit Right
+    go(nums, x + 1, y, r, c, vis);  // Visit Down
+    
+    v.pop_back();       // BackTrack
+    vis[x][y] = 0;      // BackTrack
 }
 
 int main(){
 
-	int mat[N][N]={
-		{1,2,3},
-		{4,5,6},
-		{7,8,9}
-	};
-	vector<int> v;
-	getAllPaths(mat,0,0,v);
+    int r, c;
+    cin >> r >> c;
+
+    vector <vector<int>> nums(r, vector<int> (c, 0));
+
+    for(int i = 0; i < r; i++)
+        for(int j = 0; j < c; j++)
+            cin >> nums[i][j];
+
+    vector <vector<int>> vis(r, vector<int>(c, 0));
+    vector <int> v;
+
+    go(nums, 0, 0, r - 1, c - 1, vis);
+
+    return 0;
 }
