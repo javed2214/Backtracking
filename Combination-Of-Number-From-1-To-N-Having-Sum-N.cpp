@@ -1,5 +1,4 @@
-// Combination of Number from 1 to N having Sum 'n'
-// https://www.techiedelight.com/print-all-combination-numbers-from-1-to-n/
+// Combination of Number from 1 to N having Sum 'N'
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -7,17 +6,20 @@ using namespace std;
 void printCombination(vector <int> &v){
 
 	for(auto it:v) cout<<it<<" ";
-	cout<<endl;
+	cout << endl;
 }
 
-void Combi(int index, int n, vector <int> &v){
+void combinationSum(vector <int> &v, int n, int index){
 
 	if(n == 0) printCombination(v);
 
-	for(int i=index;i<=n;i++){
+	for(int i = index; i <= n; i++){
+
 		v.push_back(i);
-		Combi(i, n-i, v);
-		v.pop_back();	// Backtrack
+		
+		combinationSum(v, n-i, i);
+		
+		v.pop_back();
 	}
 }
 
@@ -28,7 +30,7 @@ int main(){
 
 	vector <int> v;
 
-	Combi(1,n,v);
+	combinationSum(v,n,1);
 
 	return 0;
 }
