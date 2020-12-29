@@ -7,18 +7,18 @@ using namespace std;
 
 void getParenth(int openB, int closeB, int n, string str, vector <string> &v){
 
-	if(closeB==n){
-		v.emplace_back(str);
+	if(closeB == n){
+		v.push_back(str);
 		return;
 	}
 	if(closeB < openB){
-		str+=")";
-		getParenth(openB,closeB+1,n,str,v);
+		str += ")";
+		getParenth(openB, closeB + 1, n, str, v);
 		str.pop_back();
 	}
 	if(openB < n){
-		str+="(";
-		getParenth(openB+1,closeB,n,str,v);
+		str += "(";
+		getParenth(openB + 1, closeB, n, str, v);
 		str.pop_back();
 	}
 }
