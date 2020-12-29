@@ -5,7 +5,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void getParenth(int openB, int closeB, int n, string str, vector <string> &v){
+void getBrackets(int openB, int closeB, int n, string str, vector <string> &v){
 
 	if(closeB == n){
 		v.push_back(str);
@@ -13,12 +13,12 @@ void getParenth(int openB, int closeB, int n, string str, vector <string> &v){
 	}
 	if(closeB < openB){
 		str += ")";
-		getParenth(openB, closeB + 1, n, str, v);
+		getBrackets(openB, closeB + 1, n, str, v);
 		str.pop_back();
 	}
 	if(openB < n){
 		str += "(";
-		getParenth(openB + 1, closeB, n, str, v);
+		getBrackets(openB + 1, closeB, n, str, v);
 		str.pop_back();
 	}
 }
@@ -28,7 +28,7 @@ int main(){
 	int n=3;
 	string str;
 	vector <string> v;
-	getParenth(0,0,n,str,v);
+	getBrackets(0,0,n,str,v);
 
 	for(auto it:v){
 		for(auto ptr:it)
