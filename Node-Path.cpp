@@ -1,5 +1,4 @@
 // Print Path from Root to a Given Node in a Binary Tree
-// https://www.geeksforgeeks.org/print-path-root-given-node-binary-tree/
 // BackTracking Application
 
 #include<bits/stdc++.h>
